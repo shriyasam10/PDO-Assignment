@@ -48,7 +48,28 @@ return self::$db;
 $db = dbconn::getconnection();
 echo "<b>Connected Successfully</b>"."<br>";
 
+
 $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+$stmt= $db->prepare('select * from accounts where id<6');
+$stmt->execute();
+$result=$stmt->fetch(PDO::FETCH_OBJ);
+
+echo "<table border=\"1\"><tr><th>ID</th><th>Email</th><th>First Name</th><th>Last Name</th><th>Phone</th><th>Birthday</th><th>Gender</th><th>Password</th></tr>";
+foreach ($result as $row) 
+{
+
+echo
+"<tr><td>".$row["id"]."</td><td>".$row["email"]."</td><td>".$row["fname"]."</td><td>".$row["lname"]."</td><td>".$row["phone"]."</td><td>".$row["birthday"]."</td><td>".$row["gender"]."</td><td>".$row["password"]."</td></tr>";
+
+}
+
+//}else
+//{
+ //echo '0 results';
+    
+//}
+
+/*$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 $stmt= $db->prepare('select * from accounts where id<6');
 $stmt->execute();
 while($result=$stmt->fetch(PDO::FETCH_OBJ))
@@ -59,7 +80,7 @@ $results[]=$result;
 }
 
 print_r($results);
-
+*/
 
 ?>
 
