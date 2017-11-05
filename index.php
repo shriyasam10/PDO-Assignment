@@ -48,7 +48,37 @@ return self::$db;
 $db = dbconn::getconnection();
 echo "<b>Connected Successfully</b>"."<br>";
 
+$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+$stmt= $db->prepare('select * from accounts where id<6');
+$stmt->execute();
+while($result=$stmt->fetch(PDO::FETCH_OBJ))
+{
+
+$results[]=$result;
+
+}
+
+print_r($results);
+
+
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
